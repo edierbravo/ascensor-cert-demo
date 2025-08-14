@@ -1,14 +1,51 @@
 import React, { useEffect, useState } from "react";
 import Image from "../assets/iso.png";
 import Logo from "../assets/logo.svg";
-import GoogleSvg from "../assets/icons8-google.svg";
+// import GoogleSvg from "../assets/icons8-google.svg";
 import { FaEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa6";
+import { useAuth } from "../hooks/useAuth";
 
 
+const initialLoginForm = {
+    email: 'admin@admin.com',
+    password: '1234',
+}
 
-const Login = () => {
+export const LoginPage = () => {
+  const { handlerLogin } = useAuth();
   const [ showPassword, setShowPassword ] = useState(false);
+  const [loginForm, setLoginForm] = useState(initialLoginForm);
+  const { email, password } = loginForm;
+
+  const onInputChange = ({ target }) => {
+        const { name, value } = target;
+        setLoginForm(
+            {
+                ...loginForm,
+                [name]: value,
+            }
+        )
+    }
+
+  const onSubmit = (event) => {
+        event.preventDefault();
+        console.log(loginForm)
+
+        if (!email || !password) {
+            console.log("Error campos vacios")
+            // Swal.fire(
+            //     'Campos obligatorios',
+            //     'Correo y Password son requeridos',
+            //     'error'
+            // )
+            return;
+        }
+
+        handlerLogin({ email, password });
+
+        setLoginForm(initialLoginForm);
+    }
 
 
   return (
@@ -28,10 +65,16 @@ const Login = () => {
           <div className="login-center">
             <h2>Bienvenido!</h2>
             <p>Por favor ingresa tus credenciales</p>
-            <form>
-              <input type="email" placeholder="Correo" />
+            <form onSubmit={onSubmit}>
+              <input 
+                type="email" name="email" placeholder="Correo" value={email}
+                onChange={onInputChange} 
+              />
               <div className="pass-input-div">
-                <input type={showPassword ? "text" : "password"} placeholder="Contraseña" />
+                <input 
+                  type={showPassword ? "text" : "password"} name="password" value={password} 
+                  placeholder="Contraseña"  onChange={onInputChange}
+                />
                 {showPassword ? <FaEyeSlash className="eye-icon" onClick={() => {setShowPassword(!showPassword)}} /> : <FaEye className="eye-icon" onClick={() => {setShowPassword(!showPassword)}} />}
               </div>
 
@@ -47,7 +90,7 @@ const Login = () => {
                 </a> */}
               {/* </div> */}
               <div className="login-center-buttons">
-                <button type="button">Log In</button>
+                <button type="submit">Log In</button>
                 {/* <button type="button">
                   <img src={GoogleSvg} alt="" />
                   Log In with Google
@@ -66,4 +109,3 @@ const Login = () => {
   );
 };
 
-export default Login;
