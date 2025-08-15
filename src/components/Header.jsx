@@ -1,39 +1,50 @@
 import Logo from "../assets/logo.png";
 import { FaAt, FaChildReaching, FaEarthAmericas } from "react-icons/fa6";
-import { FaUserCircle } from "react-icons/fa";
+import UserIcon from "../assets/user.png";
+import { AiOutlineMenuFold } from "react-icons/ai";
+import { AiOutlineMenuUnfold } from "react-icons/ai";
 
-export const Header = () => {
+const isMenuOpen = JSON.parse(sessionStorage.getItem('isMenuOpen'))
+
+export const Header = ({ setIsMenuOpen, isMenuOpen }) => {
+
+  const onClickMenu = () => {
+        setIsMenuOpen(!isMenuOpen); 
+        sessionStorage.setItem('isMenuOpen', !isMenuOpen);
+        console.log(!isMenuOpen);
+  };
+
   return (
-    <header className="bg-white border-b border-mainBlue shadow p-4 flex items-center justify-between">
+    <>
+    
+    <header className="header">
       <div className="left">
-        <div className="menu-container">
-          <div className="menu">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
+        <div className={`menu-container menu ${isMenuOpen ? "menu-toggle" : ""}`} onClick={onClickMenu}>
+          {isMenuOpen ?  <AiOutlineMenuFold /> : <AiOutlineMenuUnfold />}
         </div>
 
         <div className="brand">
            <img src={Logo} alt="Logo" className="logo"/>
-           <span className="name">SICA | ONAC</span>
+           <span className="name">SICA</span>
+           <div className="name"></div>
+           <span className="name">ONAC</span>
         </div>
       </div>
 
       <div className="right">
-        <a href="#">
-          <FaAt />
+        <a href="#" className="icons-header">
+          <FaAt className="img"/>
         </a>
-        <a href="#">
-          <FaChildReaching />
+        <a href="#" className="icons-header">
+          <FaChildReaching className="img"/>
         </a>
-        <a href="#">
-          <FaEarthAmericas />
+        <a href="#" className="icons-header">
+          <FaEarthAmericas className="img"/>
         </a>
-        <a href="#" className="user">
-          <FaUserCircle />
-        </a>
+          <img src={UserIcon} alt="User" className="user-icon"/>
       </div>
     </header>
+
+    </>
   );
 }

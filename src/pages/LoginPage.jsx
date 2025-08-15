@@ -5,6 +5,7 @@ import Logo from "../assets/logo.svg";
 import { FaEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa6";
 import { useAuth } from "../hooks/useAuth";
+import { useSelector } from "react-redux";
 
 
 const initialLoginForm = {
@@ -12,7 +13,9 @@ const initialLoginForm = {
     password: '1234',
 }
 
+
 export const LoginPage = () => {
+
   const { handlerLogin } = useAuth();
   const [ showPassword, setShowPassword ] = useState(false);
   const [loginForm, setLoginForm] = useState(initialLoginForm);
@@ -30,7 +33,6 @@ export const LoginPage = () => {
 
   const onSubmit = (event) => {
         event.preventDefault();
-        console.log(loginForm)
 
         if (!email || !password) {
             console.log("Error campos vacios")
@@ -43,8 +45,9 @@ export const LoginPage = () => {
         }
 
         handlerLogin({ email, password });
-
         setLoginForm(initialLoginForm);
+        // console.log("is Auth: ", isAuth);
+
     }
 
 
