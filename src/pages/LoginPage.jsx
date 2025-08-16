@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import Image from "../assets/iso.png";
 import Logo from "../assets/logo.svg";
 // import GoogleSvg from "../assets/icons8-google.svg";
 import { FaEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa6";
 import { useAuth } from "../hooks/useAuth";
-import { useSelector } from "react-redux";
 
 
 const initialLoginForm = {
@@ -67,7 +66,7 @@ export const LoginPage = () => {
 
           <div className="login-center">
             <h2>Bienvenido!</h2>
-            <p>Por favor ingresa tus credenciales</p>
+            <p className="please-message">Por favor ingresa tus credenciales</p>
             <form onSubmit={onSubmit}>
               <input 
                 type="email" name="email" placeholder="Correo" value={email}
@@ -93,7 +92,7 @@ export const LoginPage = () => {
                 </a> */}
               {/* </div> */}
               <div className="login-center-buttons">
-                <button type="submit">Log In</button>
+                <button type="submit">Ingresar</button>
                 {/* <button type="button">
                   <img src={GoogleSvg} alt="" />
                   Log In with Google
