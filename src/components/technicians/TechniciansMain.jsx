@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   Table,
   TableHeader,
@@ -5,42 +6,66 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  Pagination,
+  Spinner,
+  getKeyValue,
+  Select,
+  SelectItem,
 } from "@heroui/react";
+import { Paginator } from "../Paginator";
 import { useTechnicians } from "../../hooks/useTechnicians";
+
+export const numRows =[
+  {key: 5, label: "5"},
+  {key: 10, label: "10"},
+  {key: 20, label: "20"},
+  {key: 50, label: "50"},
+  {key: 100, label: "100"}
+]
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export const TechniciansMain = () => {
   const { technicians } = useTechnicians();
-
-  console.log(technicians[1], technicians.length);
+  const [items, setItems] = useState([]);
+  const isLoading = false; 
+  const loadingState = isLoading || technicians?.length === 0 ? "loading" : "idle";
 
   return (
     <>
       <Table
-        isStriped
-        className="rounded-none"
-        aria-label="Example static collection table"
-      >
-        <TableHeader className="roundedjj">
-          <TableColumn className="font-black">Cedula</TableColumn>
-          <TableColumn>Nombre</TableColumn>
-          <TableColumn>Telefono</TableColumn>
-          <TableColumn>Correo</TableColumn>
-          <TableColumn>Región</TableColumn>
-          <TableColumn>Ciudad</TableColumn>
-        </TableHeader>
-        <TableBody items={technicians}>
-          {(technician) => (
-            <TableRow key={technician.id}>
-              <TableCell>{technician.id}</TableCell>
-              <TableCell>{technician.name}</TableCell>
-              <TableCell>{technician.tel}</TableCell>
-              <TableCell>{technician.email}</TableCell>
-              <TableCell>{technician.region}</TableCell>
-              <TableCell>{technician.city}</TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+      aria-label="Example table with client async pagination"
+      bottomContent={
+       <Paginator 
+         items={items}
+         setItems={setItems}
+         data={technicians}
+       />
+      }
+       classNames={{
+        base: "",
+        table: "",
+      }}
+    >
+      <TableHeader>
+        <TableColumn key="id">Cedula</TableColumn>
+        <TableColumn key="name">Nombre</TableColumn>
+        <TableColumn key="tel">Telefono</TableColumn>
+        <TableColumn key="email">Correo</TableColumn>
+        <TableColumn key="city">Ciudad</TableColumn>
+        <TableColumn key="region">Región</TableColumn>
+      </TableHeader>
+       <TableBody items={items}
+        loadingContent={<Spinner />}
+        loadingState={loadingState}
+       >
+        {(item) => (
+          <TableRow key={item.id}>
+            {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
+          </TableRow>
+        )}
+      </TableBody>
+    </Table>
     </>
   );
 };
