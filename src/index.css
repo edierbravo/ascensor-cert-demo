@@ -105,7 +105,8 @@ header {
   color: var(--main-blue);
 }
 .brand div {
-  width: 0.15rem;
+  /* border: 2px solid red; */
+  width: 2rem !important;
   height: var(--custom-font-size-title);
   background-color: var(--main-blue);
   border-radius: 5%;
@@ -204,6 +205,7 @@ main {
   margin-left: var(--margin-fold);
   padding: 0.5rem;
   transition: padding-left 0.5s ease;
+  overflow-y: auto;
 }
 main.menu-toggle {
   margin-left: var(--margin-unfold);
