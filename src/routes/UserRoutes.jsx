@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { TestPage } from "../components/TestPage";
 import { Customers } from "../components/Customers";
 import { Certificates } from "../components/Certificates";
-import { Technicians } from "../components/Technicians";
+import { TechniciansMain } from "../components/technicians/TechniciansMain";
 import { Inicio } from "../components/Inicio";
 import { MainPage } from "../pages/MainPage";
 import { NotFound } from "../components/NotFound";
@@ -11,7 +11,6 @@ import { NotFound } from "../components/NotFound";
 export const UserRoutes = () => {
 
     return (
-        <div>
             <Routes>
                 {/* <Route path="/" element={<Navigate to="login" />} /> */}
                 {/* <Route path="/login" element={<LoginPage />} /> */}
@@ -20,9 +19,8 @@ export const UserRoutes = () => {
                 <Route path="/test" element={<TestPage />} />
                 <Route path="/customers" element={<Customers />} />
                 <Route path="/certificates" element={<Certificates />} />
-                <Route path="/technicians" element={<Technicians />} />
+                <Route path="/technicians" element={<TechniciansMain />} />
                 <Route path="/*" element={<NotFound />} />
             </Routes>
-        </div>
     );
 };
