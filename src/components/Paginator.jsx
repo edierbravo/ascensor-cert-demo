@@ -65,6 +65,12 @@ export const Paginator = ({ items, setItems, data}) => {
               page={page}
               total={pages}
               onChange={(page) => setPage(page)}
+              classNames={{
+                // wrapper: "gap-0 overflow-visible h-8 rounded-sm border border-divider",
+                // item: "w-8 h-8 text-small rounded-none bg-transparent",
+                cursor:
+                  "bg-blue-600 ",
+              }}
             />
           </div>
         ) : null
