@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Table,
   TableHeader,
@@ -6,27 +6,14 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Pagination,
   Spinner,
   getKeyValue,
-  Select,
-  SelectItem,
 } from "@heroui/react";
 import { Paginator } from "../Paginator";
-import { useTechnicians } from "../../hooks/useTechnicians";
+import { useTechnician } from "../../hooks/useTechnician";
 
-export const numRows =[
-  {key: 5, label: "5"},
-  {key: 10, label: "10"},
-  {key: 20, label: "20"},
-  {key: 50, label: "50"},
-  {key: 100, label: "100"}
-]
-
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
-export const TechniciansMain = () => {
-  const { technicians } = useTechnicians();
+export const TechnicianMain = () => {
+  const { technicians } = useTechnician();
   const [items, setItems] = useState([]);
   const isLoading = false; 
   const loadingState = isLoading || technicians?.length === 0 ? "loading" : "idle";

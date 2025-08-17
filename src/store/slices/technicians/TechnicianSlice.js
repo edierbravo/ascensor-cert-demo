@@ -323,7 +323,7 @@ const techniciansList = [
     }
 ];
 
-export const TechniciansSlice = createSlice({
+export const TechnicianSlice = createSlice({
   name: "technicians",
   initialState: {
     technicians: techniciansList,
@@ -338,5 +338,5 @@ export const TechniciansSlice = createSlice({
 
 export const { 
     setTechnicians 
-} = TechniciansSlice.actions;
+} = TechnicianSlice.actions;
 
