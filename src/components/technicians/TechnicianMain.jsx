@@ -21,6 +21,7 @@ export const TechnicianMain = () => {
   return (
     <>
       <Table
+      isStriped 
       aria-label="Example table with client async pagination"
       bottomContent={
        <Paginator 
@@ -35,12 +36,12 @@ export const TechnicianMain = () => {
       }}
     >
       <TableHeader>
-        <TableColumn key="id">Cedula</TableColumn>
-        <TableColumn key="name">Nombre</TableColumn>
-        <TableColumn key="tel">Telefono</TableColumn>
-        <TableColumn key="email">Correo</TableColumn>
-        <TableColumn key="city">Ciudad</TableColumn>
-        <TableColumn key="region">Región</TableColumn>
+        <TableColumn key="id" className="text-black text-base font-semibold">Cedula</TableColumn>
+        <TableColumn key="name" className="text-black text-base font-semibold">Nombre</TableColumn>
+        <TableColumn key="tel" className="text-black text-base font-semibold">Telefono</TableColumn>
+        <TableColumn key="email" className="text-black text-base font-semibold">Correo</TableColumn>
+        <TableColumn key="city" className="text-black text-base font-semibold">Ciudad</TableColumn>
+        <TableColumn key="region" className="text-black text-base font-semibold">Región</TableColumn>
       </TableHeader>
        <TableBody items={items}
         loadingContent={<Spinner />}

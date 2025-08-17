@@ -106,7 +106,7 @@ header {
 }
 .brand div {
   /* border: 2px solid red; */
-  width: 2rem !important;
+  width: 0.22rem !important;
   height: var(--custom-font-size-title);
   background-color: var(--main-blue);
   border-radius: 5%;
@@ -221,7 +221,6 @@ main.menu-toggle {
   align-items: center; /* Centrado horizontal */
   justify-content: center; /* Centrado vertical */
   gap: 0;
-  border: 2px solid blue;
 }
 .not-found img {
   width: 30%;
@@ -307,7 +306,7 @@ main.menu-toggle {
 
 .login-center form {
   width: 300px;
-  border-radius: 8px;
+  border-radius: 25px;
   box-shadow: 0 0px 8px rgba(0, 0, 0, 0.4);
   padding: 1rem;
   display: flex;
@@ -322,7 +321,7 @@ form input {
   margin-bottom: 5px;
   border: 0px;
   border: 1px solid var(--main-gray);
-  border-radius: 8px;
+  border-radius: 25px;
   background-color: var(--background-gray);
   outline: none;
   box-sizing: border-box;

@@ -22,6 +22,7 @@ export const CustomerMain = () => {
   return (
     <>
       <Table
+      isStriped 
       aria-label="Example table with client async pagination"
       bottomContent={
        <Paginator 
@@ -36,14 +37,14 @@ export const CustomerMain = () => {
       }}
     >
       <TableHeader>
-        <TableColumn key="name">Nombre</TableColumn>
-        <TableColumn key="nit">Nit</TableColumn>
-        <TableColumn key="buildingType">Tipo construcción</TableColumn>
-        <TableColumn key="address">Dirección</TableColumn>
-        <TableColumn key="administrator">Administrador</TableColumn>
-        <TableColumn key="email">Correo</TableColumn>
-        <TableColumn key="phone">Teléfono</TableColumn>
-        <TableColumn key="elevators">Elevadores</TableColumn>
+        <TableColumn key="name" className="text-black text-base font-semibold">Nombre</TableColumn>
+        <TableColumn key="nit" className="text-black text-base font-semibold">Nit</TableColumn>
+        <TableColumn key="buildingType" className="text-black text-base font-semibold">Tipo construcción</TableColumn>
+        <TableColumn key="address" className="text-black text-base font-semibold">Dirección</TableColumn>
+        <TableColumn key="administrator" className="text-black text-base font-semibold">Administrador</TableColumn>
+        <TableColumn key="email" className="text-black text-base font-semibold">Correo</TableColumn>
+        <TableColumn key="phone" className="text-black text-base font-semibold">Teléfono</TableColumn>
+        <TableColumn key="elevators" className="text-black text-base font-semibold">Elevadores</TableColumn>
       </TableHeader>
        <TableBody items={items}
         loadingContent={<Spinner />}
