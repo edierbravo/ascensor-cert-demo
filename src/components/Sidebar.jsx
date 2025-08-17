@@ -5,38 +5,22 @@ import { PiCertificateFill } from "react-icons/pi";
 import { NavLink } from "react-router-dom";
 import { IoLogOut } from "react-icons/io5";
 import { useAuth } from "../hooks/useAuth";
-
-// const isMenuOpen = JSON.parse(sessionStorage.getItem('isMenuOpen'))
+import { GrElevator } from "react-icons/gr";
+import { FaElevator } from "react-icons/fa6";
 
 export const Sidebar = ({ isMenuOpen }) => {
-  const colorActive = "blue-100";
-
-  const { handlerLogout } = useAuth();
-  const onLogout = () => {
-    handlerLogout();
-  };
+  const activeStyle = "bg-blue-600 text-white";
+  const normalStyle = "hover:bg-stone-300 hover:text-black active:bg-stone-400";
 
   return (
     <>
       <div className={`sidebar ${!isMenuOpen ? "menu-toggle" : ""}`}>
-        {/* <nav> */}
         <ul className="nav nav-pills">
-          <li className="nav-item">
-            <NavLink
-              to="/main"
-              className={({ isActive }) =>
-                `nav-link  ${isActive ? `bg-${colorActive}` : ""}`
-              }
-            >
-              <IoHome className="img" />
-              <span>Inicio</span>
-            </NavLink>
-          </li>
           <li>
             <NavLink
               to="/certificates"
               className={({ isActive }) =>
-                `nav-link  ${isActive ? `bg-${colorActive}` : ""}`
+                `${normalStyle}  ${isActive ? `${activeStyle}` : ""}`
               }
             >
               <PiCertificateFill className="img" />
@@ -47,7 +31,7 @@ export const Sidebar = ({ isMenuOpen }) => {
             <NavLink
               to="/customers"
               className={({ isActive }) =>
-                `nav-link  ${isActive ? `bg-${colorActive}` : ""}`
+                `${normalStyle}  ${isActive ? `${activeStyle}` : ""}`
               }
             >
               <FaBuilding className="img" />
@@ -56,9 +40,20 @@ export const Sidebar = ({ isMenuOpen }) => {
           </li>
           <li>
             <NavLink
+              to="/elevators"
+              className={({ isActive }) =>
+                `${normalStyle}  ${isActive ? `${activeStyle}` : ""}`
+              }
+            >
+              <FaElevator className="img" />
+              <span>Ascensores</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/technicians"
               className={({ isActive }) =>
-                `nav-link  ${isActive ? `bg-${colorActive}` : ""}`
+                `${normalStyle}  ${isActive ? `${activeStyle}` : ""}`
               }
             >
               <BsPersonFillGear className="img" />
@@ -69,17 +64,11 @@ export const Sidebar = ({ isMenuOpen }) => {
             <NavLink
               to="/test"
               className={({ isActive }) =>
-                `nav-link  ${isActive ? `bg-${colorActive}` : ""}`
+                `${normalStyle}  ${isActive ? `${activeStyle}` : ""}`
               }
             >
               <FaBuilding className="img" />
               <span>Test</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink onClick={onLogout}>
-              <IoLogOut className="img" />
-              <span>Logout</span>
             </NavLink>
           </li>
         </ul>

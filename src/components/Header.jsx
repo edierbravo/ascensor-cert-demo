@@ -3,14 +3,29 @@ import { FaAt, FaChildReaching, FaEarthAmericas } from "react-icons/fa6";
 import UserIcon from "../assets/user.png";
 import { AiOutlineMenuFold } from "react-icons/ai";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
+import { IoMdHelpCircle } from "react-icons/io";
+import { useAuth } from "../hooks/useAuth";
+import {
+ Dropdown,
+ DropdownTrigger,
+ DropdownMenu,
+ DropdownItem,
+ Avatar,
+} from "@heroui/react";
 
-const isMenuOpen = JSON.parse(sessionStorage.getItem("isMenuOpen"));
+// const isMenuOpen = JSON.parse(sessionStorage.getItem("isMenuOpen"));
 
 export const Header = ({ setIsMenuOpen, isMenuOpen }) => {
+  const { handlerLogout } = useAuth();
+
   const onClickMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     sessionStorage.setItem("isMenuOpen", !isMenuOpen);
     console.log(!isMenuOpen);
+  };
+
+  const onLogout = () => {
+    handlerLogout();
   };
 
   return (
@@ -24,8 +39,11 @@ export const Header = ({ setIsMenuOpen, isMenuOpen }) => {
             {isMenuOpen ? <AiOutlineMenuFold /> : <AiOutlineMenuUnfold />}
           </div>
 
+          
+
           <div className="brand">
-            <img src={Logo} alt="Logo" className="logo" />
+            <img src={Logo} alt="Logo" className="logo min-w-[2.5rem]" />
+            {/* <span className="whitespace-nowrap name">SICA | ONAC</span> */}
             <span className="name">SICA</span>
             <div className="name"></div>
             <span className="name">ONAC</span>
@@ -37,12 +55,30 @@ export const Header = ({ setIsMenuOpen, isMenuOpen }) => {
             <FaAt className="img" />
           </a>
           <a href="#" className="icons-header">
-            <FaChildReaching className="img" />
+            <IoMdHelpCircle className="img" />
           </a>
-          <a href="#" className="icons-header">
-            <FaEarthAmericas className="img" />
-          </a>
-          <img src={UserIcon} alt="User" className="user-icon" />
+          
+          <Dropdown placement="bottom-end">
+            <DropdownTrigger>
+              <Avatar
+                isBordered
+                as="button"
+                className="transition-transform"
+                src={UserIcon}
+              />
+            </DropdownTrigger >
+            <DropdownMenu aria-label="Profile Actions" variant="light" color="default" className="p-1">
+              <DropdownItem key="profile" className="h-10 gap-2" textValue="Usuario" showDivider>
+                <p className="font-semibold text-black">Ingresaste como:</p>
+                <p className="font-semibold text-stone-600 pl-[5px]">zoey@example.com</p>
+              </DropdownItem>
+              <DropdownItem key="logout" color="danger" textValue="Logout" 
+              className="text-red-700 hover:text-red-600" onClick={onLogout}
+              >
+                Log Out
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </div>
       </header>
     </>
