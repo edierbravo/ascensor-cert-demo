@@ -9,8 +9,8 @@ import { GrElevator } from "react-icons/gr";
 import { FaElevator } from "react-icons/fa6";
 
 export const Sidebar = ({ isMenuOpen }) => {
-  const activeStyle = "bg-blue-600 text-white";
-  const normalStyle = "hover:bg-stone-300 hover:text-black active:bg-stone-400";
+  const activeStyle = "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800";
+  const normalStyle = "text-black hover:bg-stone-300 hover:text-black active:bg-stone-400";
 
   return (
     <>
@@ -20,7 +20,7 @@ export const Sidebar = ({ isMenuOpen }) => {
             <NavLink
               to="/certificates"
               className={({ isActive }) =>
-                `${normalStyle}  ${isActive ? `${activeStyle}` : ""}`
+                `${isActive ? `${activeStyle}` : `${normalStyle}`}`
               }
             >
               <PiCertificateFill className="img" />
@@ -31,7 +31,7 @@ export const Sidebar = ({ isMenuOpen }) => {
             <NavLink
               to="/customers"
               className={({ isActive }) =>
-                `${normalStyle}  ${isActive ? `${activeStyle}` : ""}`
+               `${isActive ? `${activeStyle}` : `${normalStyle}`}`
               }
             >
               <FaBuilding className="img" />
@@ -42,7 +42,7 @@ export const Sidebar = ({ isMenuOpen }) => {
             <NavLink
               to="/elevators"
               className={({ isActive }) =>
-                `${normalStyle}  ${isActive ? `${activeStyle}` : ""}`
+                `${isActive ? `${activeStyle}` : `${normalStyle}`}`
               }
             >
               <FaElevator className="img" />
@@ -53,7 +53,7 @@ export const Sidebar = ({ isMenuOpen }) => {
             <NavLink
               to="/technicians"
               className={({ isActive }) =>
-                `${normalStyle}  ${isActive ? `${activeStyle}` : ""}`
+                `${isActive ? `${activeStyle}` : `${normalStyle}`}`
               }
             >
               <BsPersonFillGear className="img" />
@@ -64,7 +64,7 @@ export const Sidebar = ({ isMenuOpen }) => {
             <NavLink
               to="/test"
               className={({ isActive }) =>
-                `${normalStyle}  ${isActive ? `${activeStyle}` : ""}`
+                `${isActive ? `${activeStyle}` : `${normalStyle}`}`
               }
             >
               <FaBuilding className="img" />
