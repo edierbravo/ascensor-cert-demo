@@ -427,8 +427,8 @@ const elevatorsList = [
     "bufferType": "Hydraulic"
   },
   {
-    "id": "18",
-    "customerNit": "901000001",
+    "id": 18,
+    "customerNit": 901000001,
     "elevatorId": "ASC_IMPAR",
     "brand": "Mitsubishi",
     "stopsNumber": 10,
@@ -452,8 +452,8 @@ const elevatorsList = [
     "bufferType": "Hydraulic"
   },
   {
-    "id": "19",
-    "customerNit": "901000002",
+    "id": 19,
+    "customerNit": 901000002,
     "elevatorId": "ASC_PAR",
     "brand": "Otis",
     "stopsNumber": 8,
@@ -477,8 +477,8 @@ const elevatorsList = [
     "bufferType": "Spring"
   },
   {
-    "id": "20",
-    "customerNit": "901000003",
+    "id": 20,
+    "customerNit": 901000003,
     "elevatorId": "ASC_01",
     "brand": "Schindler",
     "stopsNumber": 12,
@@ -502,8 +502,8 @@ const elevatorsList = [
     "bufferType": "Hydraulic"
   },
   {
-    "id": "21",
-    "customerNit": "901000003",
+    "id": 21,
+    "customerNit": 901000003,
     "elevatorId": "ASC_02",
     "brand": "Kone",
     "stopsNumber": 6,
@@ -527,8 +527,8 @@ const elevatorsList = [
     "bufferType": "Spring"
   },
   {
-    "id": "22",
-    "customerNit": "901000004",
+    "id": 22,
+    "customerNit": 901000004,
     "elevatorId": "ASC_03",
     "brand": "ThyssenKrupp",
     "stopsNumber": 15,
