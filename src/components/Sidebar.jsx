@@ -2,11 +2,22 @@ import { IoHome } from "react-icons/io5";
 import { FaBuilding } from "react-icons/fa";
 import { BsPersonFillGear } from "react-icons/bs";
 import { PiCertificateFill } from "react-icons/pi";
+import { FaClipboardCheck } from "react-icons/fa6";
+import { FaBuildingCircleCheck } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import { IoLogOut } from "react-icons/io5";
 import { useAuth } from "../hooks/useAuth";
 import { GrElevator } from "react-icons/gr";
 import { FaElevator } from "react-icons/fa6";
+
+export const sidebarOptions = [
+  { path: "/inspections", icon: <PiCertificateFill className="img" />, label: "Inspecciones" },
+  { path: "/customers", icon: <FaBuilding className="img" />, label: "Clientes" },
+  { path: "/elevators", icon: <FaElevator className="img" />, label: "Ascensores" },
+  { path: "/technicians", icon: <BsPersonFillGear className="img" />, label: "Técnicos" },
+  { path: "/items", icon: <FaClipboardCheck className="img" />, label: "Items" },
+  { path: "/test", icon: <FaBuilding className="img" />, label: "Test" },
+];
 
 export const Sidebar = ({ isMenuOpen }) => {
   const activeStyle = "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800";
@@ -16,7 +27,22 @@ export const Sidebar = ({ isMenuOpen }) => {
     <>
       <div className={`sidebar ${!isMenuOpen ? "menu-toggle" : ""}`}>
         <ul className="nav nav-pills">
-          <li>
+          {
+            sidebarOptions.map((option) => (
+              <li key={option.path}>
+                <NavLink
+                  to={option.path}
+                  className={({ isActive }) =>
+                    `${isActive ? `${activeStyle}` : `${normalStyle}`}`
+                  }
+                >
+                  {option.icon}
+                  <span>{option.label}</span>
+                </NavLink>
+              </li>
+            ))
+          }
+          {/* <li>
             <NavLink
               to="/certificates"
               className={({ isActive }) =>
@@ -70,7 +96,7 @@ export const Sidebar = ({ isMenuOpen }) => {
               <FaBuilding className="img" />
               <span>Test</span>
             </NavLink>
-          </li>
+          </li> */}
         </ul>
         {/* </nav> */}
       </div>

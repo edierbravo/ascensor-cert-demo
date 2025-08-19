@@ -117,7 +117,7 @@ export const ElevatorMain = () => {
             onValueChange={onSearchChange}
           />
           <Button
-            className="bg-foreground text-background"
+            className="bg-blue-600 text-background"
             endContent={<IoMdAddCircle />}
             size="lg"
           >
@@ -155,14 +155,14 @@ export const ElevatorMain = () => {
             onSortChange={setSortDescriptor}
             sortDescriptor={sortDescriptor}
             aria-label="Example table with client async pagination"
-            // bottomContent={
-            // <Paginator items={items} setItems={setItems} data={elevators} />
-            // }
             className="max-h-[70vh] overflow-y-auto p-1"
             shadow="none"
             topContent={topContent}
             topContentPlacement="outside"
-            bottomContent={bottomContent}
+            // bottomContent={bottomContent}
+            bottomContent={
+              <Paginator items={items} setItems={setItems} data={elevators} />
+            }
             bottomContentPlacement="outside"
           >
             <TableHeader>
@@ -198,6 +198,7 @@ export const ElevatorMain = () => {
               <TableColumn
                 key="manufacturer"
                 className="text-black text-base font-semibold"
+                allowsSorting
               >
                 Fabricante
               </TableColumn>
