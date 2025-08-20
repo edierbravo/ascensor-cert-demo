@@ -15,7 +15,7 @@ import {
   Input,
 } from "@heroui/react";
 import { Paginator } from "../Paginator";
-import { useElevator } from "../../hooks/useelevator";
+import { useElevator } from "../../hooks/useElevator";
 import { ElevatorDetail } from "./ElevatorDetail";
 import { FaSort } from "react-icons/fa6";
 import { SortIcon } from "@heroui/shared-icons";
@@ -25,7 +25,7 @@ import { IoMdAddCircle } from "react-icons/io";
 
 const INITIAL_VISIBLE_COLUMNS = [
   "serialNumber",
-  "elevatorId",
+  "elevatorCode",
   "brand",
   "customerNit",
   "details",
@@ -175,7 +175,7 @@ export const ElevatorMain = () => {
                 Numero de serie
               </TableColumn>
               <TableColumn
-                key="elevatorId"
+                key="elevatorCode"
                 className="text-black text-base font-semibold"
                 allowsSorting
               >
@@ -247,7 +247,7 @@ export const ElevatorMain = () => {
                   {(columnKey) => (
                     <TableCell>
                       {columnKey == "details" ? (
-                        <ElevatorDetail item={item} />
+                        <ElevatorDetail elevatorId={item.id} />
                       ) : (
                         getKeyValue(item, columnKey)
                       )}

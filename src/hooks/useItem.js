@@ -6,7 +6,14 @@ export const useItem = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const getItemById = (itemId) => {
+    const itemFound = inspectionItems.find(item => item.id === itemId);
+    return itemFound;
+  };
+
+
   return {
-    inspectionItems: inspectionItems,
+    inspectionItems,
+    getItemById,
   };
 };
