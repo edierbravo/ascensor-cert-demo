@@ -165,11 +165,6 @@ export const ElevatorMain = () => {
             Agregar
           </Button>
         </div>
-        <div className="flex justify-between items-center">
-          <span className="text-default-400 text-small">
-            Total {elevators.length} Ascensores
-          </span>
-        </div>
       </div>
     );
   }, [

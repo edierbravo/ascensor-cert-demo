@@ -33,7 +33,6 @@ export const ItemDetail = () => {
     setCurrent(0);
   }, [evaluationSelected, itemSelected]);
 
-  console.log(evaluationSelected);
   if (!evaluationSelected) {
     return (
       <Alert

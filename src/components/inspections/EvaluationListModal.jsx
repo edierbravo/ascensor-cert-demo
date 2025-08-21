@@ -1,5 +1,4 @@
 import {
-  Alert,
   Modal,
   ModalContent,
   ModalHeader,
@@ -8,13 +7,8 @@ import {
   Tabs,
   Tab,
   Button,
-  Listbox,
-  ListboxItem,
 } from "@heroui/react";
 import { useEffect, useState } from "react";
-import { useElevator } from "../../hooks/useElevator";
-import { DetailTable } from "../DetailTable";
-import { div } from "framer-motion/client";
 import { useEvaluation } from "../../hooks/useEvaluation";
 import { ItemDetail } from "../items/ItemDetail";
 
@@ -34,15 +28,25 @@ export const EvaluationListModal = ({ isOpen, onClose }) => {
   const { evaluationsSelected, handlerEvaluationSelectedById } =
     useEvaluation();
   const [seccionSelected, setSeccionSelected] = useState(tabs[0].key);
-  const [itemSelected, setItemSelected] = useState(0);
-  //   const [evaluation, setEvaluation] = useState({});
   const [statusSelected, setEstatusSelected] = useState(
     seccionSelected != "findings" || false
   );
+  const [itemSelected, setItemSelected] = useState(0);
+
+  const getFirstMatch = (list, key, value) => {
+    return list.find((evaluation) => {
+      return evaluation[key] == value;
+    })?.item;
+  };
 
   useEffect(() => {
-    setEstatusSelected(seccionSelected != "findings" || false);
+    console.log("Status: ", statusSelected);
 
+    setItemSelected(getFirstMatch(evaluationsSelected, "status", statusSelected));
+    console.log("ItemSelected: ", evaluationsSelected, itemSelected);
+  }, [, statusSelected]);
+
+  useEffect(() => {
     console.log(
       "itemSelected, SeccionSelected, statusSelected: ",
       itemSelected,
@@ -51,11 +55,21 @@ export const EvaluationListModal = ({ isOpen, onClose }) => {
     );
     handlerEvaluationSelectedById(itemSelected);
     // setEvaluation(evaluationsSelected.find((item) => item.id == itemSelected));
-  }, [, itemSelected, seccionSelected]);
+  }, [, itemSelected]);
 
   useEffect(() => {
+    console.log(itemSelected);
     setEstatusSelected(seccionSelected != "findings" || false);
-    setItemSelected(0);
+    setItemSelected(evaluationsSelected[0]?.item);
+    setItemSelected(
+      evaluationsSelected.find(
+        (evaluation) =>
+          (
+            evaluation.item == itemSelected &&
+            evaluation.status != statusSelected
+          )?.id
+      )
+    );
   }, [, seccionSelected]);
 
   return (

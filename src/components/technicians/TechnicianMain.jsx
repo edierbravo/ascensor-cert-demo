@@ -13,6 +13,13 @@ import {
 } from "@heroui/react";
 import { Paginator } from "../Paginator";
 import { useTechnician } from "../../hooks/useTechnician";
+import { ActionsDropdown } from "../ActionsDropdown";
+import { TopContent } from "../TopContent";
+
+const actionList = [
+  { key: "edit", label: "Editar", danger: false },
+  { key: "delete", label: "Eliminar", danger: true },
+];
 
 export const TechnicianMain = () => {
   const { technicians } = useTechnician();
@@ -21,6 +28,19 @@ export const TechnicianMain = () => {
   const loadingState =
     isLoading || technicians?.length === 0 ? "loading" : "idle";
 
+  const handleActionSelected = (actionKey, item) => {
+    switch (actionKey) {
+      case "edit":
+        // edit
+        break;
+      case "delete":
+        // delete
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <>
       <Card className="">
@@ -28,12 +48,14 @@ export const TechnicianMain = () => {
           <Table
             isHeaderSticky
             isStriped
-            aria-label="Example table with client async pagination"
+            aria-label="Example"
+            topContent={<TopContent/>}
+            topContentPlacement="outside"
             // bottomContent={
             // <Paginator items={items} setItems={setItems} data={technicians} />
             // }
             shadow="none"
-            className="max-h-[70vh] overflow-y-auto p-1"
+            className="max-h-[70vh] overflow-y-auto p-1 gap-2"
           >
             <TableHeader>
               <TableColumn
@@ -72,6 +94,12 @@ export const TechnicianMain = () => {
               >
                 Región
               </TableColumn>
+              <TableColumn
+                key="actions"
+                className="text-black text-base font-semibold"
+              >
+                Acciones
+              </TableColumn>
             </TableHeader>
             <TableBody
               items={items}
@@ -81,7 +109,25 @@ export const TechnicianMain = () => {
               {(item) => (
                 <TableRow key={item.id}>
                   {(columnKey) => (
-                    <TableCell>{getKeyValue(item, columnKey)}</TableCell>
+                    <TableCell>
+                      {(() => {
+                        switch (columnKey) {
+                          case "actions":
+                            return (
+                              <>
+                                <ActionsDropdown
+                                  actionList={actionList}
+                                  handleActionSelected={(actionKey) =>
+                                    handleActionSelected(actionKey, item)
+                                  }
+                                />
+                              </>
+                            );
+                          default:
+                            return getKeyValue(item, columnKey);
+                        }
+                      })()}
+                    </TableCell>
                   )}
                 </TableRow>
               )}
