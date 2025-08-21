@@ -10,10 +10,10 @@ export const CustomerSummary = ({ customerNit }) => {
   return (
     <div className="flex flex-col">
       <span className="font-semibold">
-        {customerSummary.name}
+        {customerSummary.nit}
       </span>
       <span className="text-gray-500 flex items-center gap-1">
-        <PiIdentificationBadgeFill className="text-blue-600"/> {customerSummary.nit}</span>
+        <PiIdentificationBadgeFill className="text-blue-600"/> {customerSummary.name}</span>
       <span className="text-gray-600 flex items-center gap-1">
         <FaMapMarkerAlt className="text-red-600"/> {customerSummary.address}
       </span>

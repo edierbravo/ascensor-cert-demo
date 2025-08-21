@@ -16,25 +16,45 @@ import {
 import { Paginator } from "../Paginator";
 import { IoMdAddCircle } from "react-icons/io";
 import { useInspection } from "../../hooks/useInspection";
-import { ElevatorDetail } from "../elevators/ElevatorDetail";
 import { useElevator } from "../../hooks/useElevator";
+import { useCustomer } from "../../hooks/useCustomer";
+import { useEvaluation } from "../../hooks/useEvaluation";
 import { CustomerSummary } from "../customers/customerSummary";
 import { ElevatorSummary } from "../elevators/ElevatorSummary";
 import { FindingsSummary } from "../items/findingsSummary";
 import { ActionsDropdown } from "../ActionsDropdown";
 import { ElevatorDetailModal } from "../elevators/ElevatorDetailModal";
+import { CustomerDetailModal } from "../customers/CustomerDetailModal";
+import { EvaluationListModal } from "./EvaluationListModal";
 
 export const InspectionMain = () => {
   const { inspections } = useInspection();
   const [items, setItems] = useState([]);
   const { handlerElevatorSelected } = useElevator();
+  const { handlerCustomerSelected } = useCustomer();
+  const { handlerEvaluationsSelected } = useEvaluation();
   const isLoading = false;
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenElevatorModal,
+    onOpen: onOpenElevatorModal,
+    onClose: onCloseElevatorModal,
+  } = useDisclosure();
+  const {
+    isOpen: isOpenCustomerModal,
+    onOpen: onOpenCustomerModal,
+    onClose: onCloseCustomerModal,
+  } = useDisclosure();
+  const {
+    isOpen: isOpenEvaluationsModal,
+    onOpen: onOpenEvaluatiosModal,
+    onClose: onCloseEvaluationsModal,
+  } = useDisclosure();
   const loadingState =
     isLoading || inspections?.length === 0 ? "loading" : "idle";
   const actionList = [
     { key: "customerDetails", label: "Detalles del cliente", danger: false },
     { key: "elevatorDetails", label: "Detalles del ascensor", danger: false },
+    { key: "evaluations", label: "Evaluaciones y Hallazgos", danger: false },
     { key: "edit", label: "Editar", danger: false },
     { key: "delete", label: "Eliminar", danger: true },
   ];
@@ -43,10 +63,15 @@ export const InspectionMain = () => {
     switch (actionKey) {
       case "elevatorDetails":
         handlerElevatorSelected(item.elevatorId);
-        onOpen();
+        onOpenElevatorModal();
         break;
       case "customerDetails":
-        // manejar detalles del cliente
+        handlerCustomerSelected(item.customerNit);
+        onOpenCustomerModal();
+        break;
+      case "evaluations":
+        handlerEvaluationsSelected(item.evaluations);
+        onOpenEvaluatiosModal();
         break;
       case "edit":
         // editar
@@ -82,12 +107,8 @@ export const InspectionMain = () => {
   });
 
   // const elevatorDetailContent = React.useMemo(() => {
-  //   return <ElevatorDetailModal isOpen={isOpen} onClose={onClose} />;
-  // }, [isOpen, actionSelected]);
-
-  const handleOpen = () => {
-    onOpen();
-  };
+  //   return <ElevatorDetailModal isOpenElevatorModal={isOpenElevatorModal} onCloseElevatorModal={onCloseElevatorModal} />;
+  // }, [isOpenElevatorModal, actionSelected]);
 
   return (
     <>
@@ -154,11 +175,6 @@ export const InspectionMain = () => {
                     <TableCell>
                       {(() => {
                         switch (columnKey) {
-                          case "elevatorId":
-                            return (
-                              <ElevatorDetail elevatorId={item.elevatorId} />
-                            );
-
                           case "customerSummary":
                             return (
                               <CustomerSummary customerNit={item.customerNit} />
@@ -201,7 +217,18 @@ export const InspectionMain = () => {
         </CardBody>
       </Card>
 
-      <ElevatorDetailModal isOpen={isOpen} onClose={onClose} />
+      <ElevatorDetailModal
+        isOpen={isOpenElevatorModal}
+        onClose={onCloseElevatorModal}
+      />
+      <CustomerDetailModal
+        isOpen={isOpenCustomerModal}
+        onClose={onCloseCustomerModal}
+      />
+      <EvaluationListModal
+        isOpen={isOpenEvaluationsModal}
+        onClose={onCloseEvaluationsModal}
+      />
     </>
   );
 };

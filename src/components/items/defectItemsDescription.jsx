@@ -23,6 +23,11 @@ export const defectItems = [
   },
 ];
 
+export const getIconColor = (code) => {
+  const defect = defectItems.find((item) => item.code === code);
+  return defect ? defect.iconColor : "bg-gray-100"; // fallback si no existe
+};
+
 export const DefectItemsDescription = () => {
 
   return (

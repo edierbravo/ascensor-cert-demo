@@ -21,6 +21,7 @@ export const UserRoutes = () => {
       <Route path="/inspections" element={<InspectionMain />} />
       <Route path="/technicians" element={<TechnicianMain />} />
       <Route path="/items" element={<ItemMain />} />
+      <Route path="/test" element={<TestPage />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>
   );

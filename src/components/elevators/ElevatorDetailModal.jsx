@@ -1,10 +1,4 @@
 import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
   Alert,
   Modal,
   ModalContent,
@@ -16,10 +10,16 @@ import {
   Button,
 } from "@heroui/react";
 import { RiErrorWarningFill } from "react-icons/ri";
-import { tabs } from "./ElevatorDetail";
 import { useState } from "react";
 import { useElevator } from "../../hooks/useElevator";
 import { DetailTable } from "../DetailTable";
+
+export const tabs = [
+  { key: "general", title: "General" },
+  { key: "maintenance", title: "Mantenimiento" },
+  { key: "installation", title: "Instalación" },
+  { key: "technical", title: "Técnicos" },
+];
 
 const labels = {
   serialNumber: { description: "Número de serie", section: "general" },
@@ -70,7 +70,6 @@ const labels = {
 export const ElevatorDetailModal = ({ isOpen, onClose }) => {
   const { elevatorSelected } = useElevator();
   const keys = Object.keys(elevatorSelected).filter((key) => key !== "id");
-
   const [seccionSelected, setSeccionSelected] = useState(tabs[0].key);
   const filteredKeys = keys.filter(
     (key) => labels[key].section === seccionSelected
@@ -82,13 +81,13 @@ export const ElevatorDetailModal = ({ isOpen, onClose }) => {
       size={"lg"}
       onClose={onClose}
       placement="center"
-      className="z-20 min-h-[30v]"
+      className="z-20"
     >
       <ModalContent>
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-3 text-black font-bold text-xl">
-              <p className="pt-3 pl-2">Detalles</p>
+              <p className="pt-3 pl-2">Detalles del ascensor</p>
             </ModalHeader>
             <ModalBody className="text-lg">
               <Tabs
@@ -117,13 +116,17 @@ export const ElevatorDetailModal = ({ isOpen, onClose }) => {
               {!elevatorSelected ? (
                 <Alert
                   hideIconWrapper
-                  className="bg-yellow-100 text-yellow-700"
+                  className="bg-yellow-100 text-yellow-700 max-h-15"
                   icon={<RiErrorWarningFill />}
                   title={`No hay detalles para mostrar`}
                   variant={"flat"}
                 />
               ) : (
-                <DetailTable keys={filteredKeys} labels={labels} data={elevatorSelected} />
+                <DetailTable
+                  keys={filteredKeys}
+                  labels={labels}
+                  data={elevatorSelected}
+                />
               )}
             </ModalBody>
             <ModalFooter>
