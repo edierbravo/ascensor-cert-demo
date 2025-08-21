@@ -14,7 +14,7 @@ const inspectionsList = [
         item: 1,
         status: false,
         observation:
-          "ACCESO AL CUARTO DE MAQUINAS NO CUMPLE CON MEDIDAS DE SEGURIDAD",
+          "OBSERVACIÓN",
         corrected: true,
         images: [images[0].image, images[1].image, images[2].image],
       },

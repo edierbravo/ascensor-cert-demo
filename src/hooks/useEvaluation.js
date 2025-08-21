@@ -14,16 +14,16 @@ export const useEvaluation = () => {
     dispatch(onEvaluationsSelected(items));
   };
 
-  const handlerEvaluationSelectedById = (Id) => {
-    dispatch(onEvaluationsSelectedById(Id))
-    console.log(evaluationSelected)
-    const itemId = evaluationSelected?.item
+  const handlerEvaluationSelectedById = (id) => {
+    dispatch(onEvaluationsSelectedById(id))
+    
+    const itemId = getEvaluationById(id)?.item
     dispatch(onItemSelectedById(itemId))
   };
 
-  const getItemById = (itemId) => {
-    const itemFound = inspectionItems.find((item) => item.id === itemId);
-    return itemFound;
+  const getEvaluationById = (id) => {
+    const evaluationFound = evaluationsSelected.find((item) => item.id === id);
+    return evaluationFound;
   };
 
   return {
@@ -32,6 +32,6 @@ export const useEvaluation = () => {
     evaluationSelected,
     handlerEvaluationsSelected,
     handlerEvaluationSelectedById,
-    getItemById,
+    getEvaluationById,
   };
 };

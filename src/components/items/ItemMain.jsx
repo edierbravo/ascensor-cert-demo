@@ -14,8 +14,14 @@ import {
 } from "@heroui/react";
 import { Paginator } from "../Paginator";
 import { useItem } from "../../hooks/useItem";
-import { IoMdAddCircle } from "react-icons/io";
-import { DefectItemsDescription } from "./defectItemsDescription";
+import { DefectItemsDescription } from "./DefectItemsDescription";
+import { ActionsDropdown } from "../ActionsDropdown";
+import {TopContent} from "../TopContent"
+
+const actionList = [
+  { key: "edit", label: "Editar", danger: false },
+  { key: "delete", label: "Eliminar", danger: true },
+];
 
 export const ItemMain = () => {
   const { inspectionItems } = useItem();
@@ -24,19 +30,18 @@ export const ItemMain = () => {
   const loadingState =
     isLoading || inspectionItems?.length === 0 ? "loading" : "idle";
 
-  const topContent = React.useMemo(() => {
-    return (
-      <div className="flex justify-center items-center mb-1 gap-3">
-        <Button
-          className="bg-blue-600 text-background"
-          endContent={<IoMdAddCircle />}
-          size="lg"
-        >
-          Agregar
-        </Button>
-      </div>
-    );
-  });
+  const handleActionSelected = (actionKey, item) => {
+    switch (actionKey) {
+      case "edit":
+        // edit
+        break;
+      case "delete":
+        // delete
+        break;
+      default:
+        break;
+    }
+  };
 
   const bottomContent = React.useMemo(() => {
     return (
@@ -55,7 +60,7 @@ export const ItemMain = () => {
             isHeaderSticky
             isStriped
             aria-label="Example table with client async pagination"
-            topContent={topContent}
+            topContent={<TopContent />}
             topContentPlacement="outside"
             bottomContent={bottomContent}
             bottomContentPlacement="outside"
@@ -81,6 +86,12 @@ export const ItemMain = () => {
               >
                 Defecto
               </TableColumn>
+              <TableColumn
+                key="actions"
+                className="text-black text-base font-semibold"
+              >
+                Acciones
+              </TableColumn>
             </TableHeader>
             <TableBody
               items={items}
@@ -90,13 +101,30 @@ export const ItemMain = () => {
               {(item) => (
                 <TableRow key={item.id}>
                   {(columnKey) => (
-                    <TableCell>{getKeyValue(item, columnKey)}</TableCell>
+                    <TableCell>
+                      {(() => {
+                        switch (columnKey) {
+                          case "actions":
+                            return (
+                              <>
+                                <ActionsDropdown
+                                  actionList={actionList}
+                                  handleActionSelected={(actionKey) =>
+                                    handleActionSelected(actionKey, item)
+                                  }
+                                />
+                              </>
+                            );
+                          default:
+                            return getKeyValue(item, columnKey);
+                        }
+                      })()}
+                    </TableCell>
                   )}
                 </TableRow>
               )}
             </TableBody>
           </Table>
-
         </CardBody>
       </Card>
     </>

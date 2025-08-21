@@ -26,6 +26,7 @@ import { ActionsDropdown } from "../ActionsDropdown";
 import { ElevatorDetailModal } from "../elevators/ElevatorDetailModal";
 import { CustomerDetailModal } from "../customers/CustomerDetailModal";
 import { EvaluationListModal } from "./EvaluationListModal";
+import { TopContent } from "../TopContent";
 
 export const InspectionMain = () => {
   const { inspections } = useInspection();
@@ -84,19 +85,6 @@ export const InspectionMain = () => {
     }
   };
 
-  const topContent = React.useMemo(() => {
-    return (
-      <div className="flex justify-center items-center mb-1 gap-3">
-        <Button
-          className="bg-blue-600 text-background"
-          endContent={<IoMdAddCircle />}
-          size="lg"
-        >
-          Agregar
-        </Button>
-      </div>
-    );
-  });
 
   const bottomContent = React.useMemo(() => {
     return (
@@ -118,7 +106,7 @@ export const InspectionMain = () => {
             isHeaderSticky
             isStriped
             aria-label="Tabla de Inspecciones"
-            topContent={topContent}
+            topContent={<TopContent/>}
             topContentPlacement="outside"
             bottomContent={bottomContent}
             bottomContentPlacement="outside"
