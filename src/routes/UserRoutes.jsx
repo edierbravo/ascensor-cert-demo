@@ -15,12 +15,13 @@ export const UserRoutes = () => {
       {/* <Route path="/login" element={<LoginPage />} /> */}
       {/* <Route path="/main" element={<Navigate to="" />} /> */}
       {/* <Route path="/main" element={<Inicio />} /> */}
-      <Route path="/main" element={<TestPage />} />
+      <Route path="/main" element={<InspectionMain />} />
       <Route path="/customers" element={<CustomerMain />} />
       <Route path="/elevators" element={<ElevatorMain />} />
       <Route path="/inspections" element={<InspectionMain />} />
       <Route path="/technicians" element={<TechnicianMain />} />
       <Route path="/items" element={<ItemMain />} />
+      <Route path="/test" element={<TestPage />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>
   );

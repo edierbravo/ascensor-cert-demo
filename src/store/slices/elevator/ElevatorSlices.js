@@ -4,7 +4,7 @@ const elevatorsList = [
   {
     "id": 1,
     "customerNit": 901000002,
-    "elevatorId": "ASC 1",
+    "elevatorCode": "ASC 1",
     "brand": "Otis",
     "stopsNumber": 10,
     "driveType": "Hydraulic",
@@ -29,7 +29,7 @@ const elevatorsList = [
   {
     "id": 2,
     "customerNit": 901000004,
-    "elevatorId": "ASC IMPAR",
+    "elevatorCode": "ASC IMPAR",
     "brand": "Schindler",
     "stopsNumber": 12,
     "driveType": "Electric",
@@ -54,7 +54,7 @@ const elevatorsList = [
   {
     "id": 3,
     "customerNit": 901000004,
-    "elevatorId": "ASC PAR",
+    "elevatorCode": "ASC PAR",
     "brand": "Kone",
     "stopsNumber": 8,
     "driveType": "Electric",
@@ -79,7 +79,7 @@ const elevatorsList = [
   {
     "id": 4,
     "customerNit": 901000006,
-    "elevatorId": "ASC 1",
+    "elevatorCode": "ASC 1",
     "brand": "ThyssenKrupp",
     "stopsNumber": 15,
     "driveType": "Electric",
@@ -104,7 +104,7 @@ const elevatorsList = [
   {
     "id": 5,
     "customerNit": 901000007,
-    "elevatorId": "ASC 2",
+    "elevatorCode": "ASC 2",
     "brand": "Mitsubishi",
     "stopsNumber": 9,
     "driveType": "Hydraulic",
@@ -129,7 +129,7 @@ const elevatorsList = [
   {
     "id": 6,
     "customerNit": 901000009,
-    "elevatorId": "ASC IMPAR",
+    "elevatorCode": "ASC IMPAR",
     "brand": "Hyundai",
     "stopsNumber": 14,
     "driveType": "Electric",
@@ -154,7 +154,7 @@ const elevatorsList = [
   {
     "id": 7,
     "customerNit": 901000010,
-    "elevatorId": "ASC PAR",
+    "elevatorCode": "ASC PAR",
     "brand": "Hitachi",
     "stopsNumber": 11,
     "driveType": "Hydraulic",
@@ -179,7 +179,7 @@ const elevatorsList = [
   {
     "id": 8,
     "customerNit": 901000011,
-    "elevatorId": "ASC 2",
+    "elevatorCode": "ASC 2",
     "brand": "Sigma",
     "stopsNumber": 7,
     "driveType": "Electric",
@@ -204,7 +204,7 @@ const elevatorsList = [
   {
     "id": 9,
     "customerNit": 901000012,
-    "elevatorId": "ASC IMPAR",
+    "elevatorCode": "ASC IMPAR",
     "brand": "Fujitec",
     "stopsNumber": 13,
     "driveType": "Hydraulic",
@@ -229,7 +229,7 @@ const elevatorsList = [
   {
     "id": 10,
     "customerNit": 901000013,
-    "elevatorId": "ASC PAR",
+    "elevatorCode": "ASC PAR",
     "brand": "LG",
     "stopsNumber": 6,
     "driveType": "Electric",
@@ -254,7 +254,7 @@ const elevatorsList = [
   {
     "id": 11,
     "customerNit": 901000014,
-    "elevatorId": "ASC 1",
+    "elevatorCode": "ASC 1",
     "brand": "Toshiba",
     "stopsNumber": 16,
     "driveType": "Electric",
@@ -279,7 +279,7 @@ const elevatorsList = [
   {
     "id": 12,
     "customerNit": 901000015,
-    "elevatorId": "ASC 2",
+    "elevatorCode": "ASC 2",
     "brand": "ExpressLift",
     "stopsNumber": 5,
     "driveType": "Hydraulic",
@@ -304,7 +304,7 @@ const elevatorsList = [
   {
     "id": 13,
     "customerNit": 901000016,
-    "elevatorId": "ASC IMPAR",
+    "elevatorCode": "ASC IMPAR",
     "brand": "Omega",
     "stopsNumber": 20,
     "driveType": "Electric",
@@ -329,7 +329,7 @@ const elevatorsList = [
   {
     "id": 14,
     "customerNit": 901000017,
-    "elevatorId": "ASC PAR",
+    "elevatorCode": "ASC PAR",
     "brand": "SilverLift",
     "stopsNumber": 18,
     "driveType": "Hydraulic",
@@ -354,7 +354,7 @@ const elevatorsList = [
   {
     "id": 15,
     "customerNit": 901000018,
-    "elevatorId": "ASC 1",
+    "elevatorCode": "ASC 1",
     "brand": "GoldenLift",
     "stopsNumber": 22,
     "driveType": "Electric",
@@ -379,7 +379,7 @@ const elevatorsList = [
   {
     "id": 16,
     "customerNit": 901000019,
-    "elevatorId": "ASC 2",
+    "elevatorCode": "ASC 2",
     "brand": "MaxLift",
     "stopsNumber": 4,
     "driveType": "Hydraulic",
@@ -404,7 +404,7 @@ const elevatorsList = [
   {
     "id": 17,
     "customerNit": 901000020,
-    "elevatorId": "ASC IMPAR",
+    "elevatorCode": "ASC IMPAR",
     "brand": "AlphaLift",
     "stopsNumber": 17,
     "driveType": "Electric",
@@ -429,7 +429,7 @@ const elevatorsList = [
   {
     "id": 18,
     "customerNit": 901000001,
-    "elevatorId": "ASC_IMPAR",
+    "elevatorCode": "ASC_IMPAR",
     "brand": "Mitsubishi",
     "stopsNumber": 10,
     "driveType": "Electromechanical",
@@ -454,7 +454,7 @@ const elevatorsList = [
   {
     "id": 19,
     "customerNit": 901000002,
-    "elevatorId": "ASC_PAR",
+    "elevatorCode": "ASC_PAR",
     "brand": "Otis",
     "stopsNumber": 8,
     "driveType": "Hydraulic",
@@ -479,7 +479,7 @@ const elevatorsList = [
   {
     "id": 20,
     "customerNit": 901000003,
-    "elevatorId": "ASC_01",
+    "elevatorCode": "ASC_01",
     "brand": "Schindler",
     "stopsNumber": 12,
     "driveType": "Electromechanical",
@@ -504,7 +504,7 @@ const elevatorsList = [
   {
     "id": 21,
     "customerNit": 901000003,
-    "elevatorId": "ASC_02",
+    "elevatorCode": "ASC_02",
     "brand": "Kone",
     "stopsNumber": 6,
     "driveType": "Hydraulic",
@@ -529,7 +529,7 @@ const elevatorsList = [
   {
     "id": 22,
     "customerNit": 901000004,
-    "elevatorId": "ASC_03",
+    "elevatorCode": "ASC_03",
     "brand": "ThyssenKrupp",
     "stopsNumber": 15,
     "driveType": "Electromechanical",
@@ -560,9 +560,13 @@ export const ElevatorSlice = createSlice({
   name: "elevators",
   initialState: {
     elevators: elevatorsList,
+    elevatorSelected: {}
   },
 
   reducers: {
+    onElevatorSelected: (state, action) => {
+      state.elevatorSelected = state.elevators.find(elevator => elevator.id === action.payload);
+    },
     setElevator: (state, action) => {
       state.elevators = action.payload;
     },
@@ -570,6 +574,8 @@ export const ElevatorSlice = createSlice({
 });
 
 export const {
-  setElevator
+  setElevator,
+  onElevatorSelected,
 } = ElevatorSlice.actions;
+  
 

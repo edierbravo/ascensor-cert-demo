@@ -16,7 +16,7 @@ export const sidebarOptions = [
   { path: "/elevators", icon: <FaElevator className="img" />, label: "Ascensores" },
   { path: "/technicians", icon: <BsPersonFillGear className="img" />, label: "Técnicos" },
   { path: "/items", icon: <FaClipboardCheck className="img" />, label: "Items" },
-  { path: "/test", icon: <FaBuilding className="img" />, label: "Test" },
+  { path: "/test", icon: <IoHome className="img" />, label: "test" },
 ];
 
 export const Sidebar = ({ isMenuOpen }) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableHeader,
@@ -11,17 +11,78 @@ import {
   Card,
   CardBody,
   Button,
+  useDisclosure,
 } from "@heroui/react";
 import { Paginator } from "../Paginator";
-import { useItem } from "../../hooks/useItem";
 import { IoMdAddCircle } from "react-icons/io";
+import { useInspection } from "../../hooks/useInspection";
+import { useElevator } from "../../hooks/useElevator";
+import { useCustomer } from "../../hooks/useCustomer";
+import { useEvaluation } from "../../hooks/useEvaluation";
+import { CustomerSummary } from "../customers/customerSummary";
+import { ElevatorSummary } from "../elevators/ElevatorSummary";
+import { FindingsSummary } from "../items/findingsSummary";
+import { ActionsDropdown } from "../ActionsDropdown";
+import { ElevatorDetailModal } from "../elevators/ElevatorDetailModal";
+import { CustomerDetailModal } from "../customers/CustomerDetailModal";
+import { EvaluationListModal } from "./EvaluationListModal";
 
 export const InspectionMain = () => {
-  const { inspectionItems } = useItem();
+  const { inspections } = useInspection();
   const [items, setItems] = useState([]);
+  const { handlerElevatorSelected } = useElevator();
+  const { handlerCustomerSelected } = useCustomer();
+  const { handlerEvaluationsSelected } = useEvaluation();
   const isLoading = false;
+  const {
+    isOpen: isOpenElevatorModal,
+    onOpen: onOpenElevatorModal,
+    onClose: onCloseElevatorModal,
+  } = useDisclosure();
+  const {
+    isOpen: isOpenCustomerModal,
+    onOpen: onOpenCustomerModal,
+    onClose: onCloseCustomerModal,
+  } = useDisclosure();
+  const {
+    isOpen: isOpenEvaluationsModal,
+    onOpen: onOpenEvaluatiosModal,
+    onClose: onCloseEvaluationsModal,
+  } = useDisclosure();
   const loadingState =
-    isLoading || inspectionItems?.length === 0 ? "loading" : "idle";
+    isLoading || inspections?.length === 0 ? "loading" : "idle";
+  const actionList = [
+    { key: "customerDetails", label: "Detalles del cliente", danger: false },
+    { key: "elevatorDetails", label: "Detalles del ascensor", danger: false },
+    { key: "evaluations", label: "Evaluaciones y Hallazgos", danger: false },
+    { key: "edit", label: "Editar", danger: false },
+    { key: "delete", label: "Eliminar", danger: true },
+  ];
+
+  const handleActionSelected = (actionKey, item) => {
+    switch (actionKey) {
+      case "elevatorDetails":
+        handlerElevatorSelected(item.elevatorId);
+        onOpenElevatorModal();
+        break;
+      case "customerDetails":
+        handlerCustomerSelected(item.customerNit);
+        onOpenCustomerModal();
+        break;
+      case "evaluations":
+        handlerEvaluationsSelected(item.evaluations);
+        onOpenEvaluatiosModal();
+        break;
+      case "edit":
+        // editar
+        break;
+      case "delete":
+        // eliminar
+        break;
+      default:
+        break;
+    }
+  };
 
   const topContent = React.useMemo(() => {
     return (
@@ -40,10 +101,14 @@ export const InspectionMain = () => {
   const bottomContent = React.useMemo(() => {
     return (
       <>
-        <Paginator items={items} setItems={setItems} data={inspectionItems} />
+        <Paginator items={items} setItems={setItems} data={inspections} />
       </>
     );
   });
+
+  // const elevatorDetailContent = React.useMemo(() => {
+  //   return <ElevatorDetailModal isOpenElevatorModal={isOpenElevatorModal} onCloseElevatorModal={onCloseElevatorModal} />;
+  // }, [isOpenElevatorModal, actionSelected]);
 
   return (
     <>
@@ -52,7 +117,7 @@ export const InspectionMain = () => {
           <Table
             isHeaderSticky
             isStriped
-            aria-label="Example table with client async pagination"
+            aria-label="Tabla de Inspecciones"
             topContent={topContent}
             topContentPlacement="outside"
             bottomContent={bottomContent}
@@ -62,22 +127,41 @@ export const InspectionMain = () => {
           >
             <TableHeader>
               <TableColumn
-                key="code"
+                key="customerSummary"
                 className="text-black text-base font-semibold"
               >
-                Codigo
+                Cliente
               </TableColumn>
               <TableColumn
-                key="description"
+                key="elevatorSummary"
                 className="text-black text-base font-semibold"
               >
-                Descripción
+                Ascensor
               </TableColumn>
               <TableColumn
-                key="defect"
+                key="quotation"
                 className="text-black text-base font-semibold"
               >
-                Defecto
+                Cotizacion
+              </TableColumn>
+              <TableColumn
+                key="uniqueConsecutive"
+                className="text-black text-base font-semibold"
+              >
+                Consecutivo
+              </TableColumn>
+              <TableColumn
+                key="findingsSummary"
+                className="text-black text-base font-semibold"
+              >
+                Hallazgos
+              </TableColumn>
+
+              <TableColumn
+                key="actions"
+                className="text-black text-base font-semibold"
+              >
+                Acciones
               </TableColumn>
             </TableHeader>
             <TableBody
@@ -88,7 +172,43 @@ export const InspectionMain = () => {
               {(item) => (
                 <TableRow key={item.id}>
                   {(columnKey) => (
-                    <TableCell>{getKeyValue(item, columnKey)}</TableCell>
+                    <TableCell>
+                      {(() => {
+                        switch (columnKey) {
+                          case "customerSummary":
+                            return (
+                              <CustomerSummary customerNit={item.customerNit} />
+                            );
+
+                          case "elevatorSummary":
+                            return (
+                              <ElevatorSummary elevatorId={item.elevatorId} />
+                            );
+
+                          case "findingsSummary":
+                            return (
+                              <FindingsSummary
+                                currentFindings={item.evaluations}
+                              />
+                            );
+
+                          case "actions":
+                            return (
+                              <>
+                                <ActionsDropdown
+                                  actionList={actionList}
+                                  handleActionSelected={(actionKey) =>
+                                    handleActionSelected(actionKey, item)
+                                  }
+                                />
+                              </>
+                            );
+
+                          default:
+                            return getKeyValue(item, columnKey);
+                        }
+                      })()}
+                    </TableCell>
                   )}
                 </TableRow>
               )}
@@ -96,6 +216,19 @@ export const InspectionMain = () => {
           </Table>
         </CardBody>
       </Card>
+
+      <ElevatorDetailModal
+        isOpen={isOpenElevatorModal}
+        onClose={onCloseElevatorModal}
+      />
+      <CustomerDetailModal
+        isOpen={isOpenCustomerModal}
+        onClose={onCloseCustomerModal}
+      />
+      <EvaluationListModal
+        isOpen={isOpenEvaluationsModal}
+        onClose={onCloseEvaluationsModal}
+      />
     </>
   );
 };
