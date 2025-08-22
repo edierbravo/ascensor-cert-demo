@@ -1,16 +1,18 @@
 import Logo from "../assets/logo.png";
 import { FaAt, FaChildReaching, FaEarthAmericas } from "react-icons/fa6";
+import { FiMenu } from "react-icons/fi";
+import { IoCloseSharp } from "react-icons/io5";
 import UserIcon from "../assets/user.png";
 import { AiOutlineMenuFold } from "react-icons/ai";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { IoMdHelpCircle } from "react-icons/io";
 import { useAuth } from "../hooks/useAuth";
 import {
- Dropdown,
- DropdownTrigger,
- DropdownMenu,
- DropdownItem,
- Avatar,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Avatar,
 } from "@heroui/react";
 
 // const isMenuOpen = JSON.parse(sessionStorage.getItem("isMenuOpen"));
@@ -33,13 +35,17 @@ export const Header = ({ setIsMenuOpen, isMenuOpen }) => {
       <header className="header">
         <div className="left">
           <div
-            className={`menu-container menu ${isMenuOpen ? "menu-toggle" : ""}`}
+            className={`menu-container menu text-black font-bold ${
+              isMenuOpen ? "menu-toggle" : ""
+            }`}
             onClick={onClickMenu}
           >
-            {isMenuOpen ? <AiOutlineMenuFold /> : <AiOutlineMenuUnfold />}
+            {isMenuOpen ? (
+              <IoCloseSharp className="w-10 h-10" />
+            ) : (
+              <FiMenu className="w-10 h-10" />
+            )}
           </div>
-
-          
 
           <div className="brand">
             <img src={Logo} alt="Logo" className="logo min-w-[2.5rem]" />
@@ -57,7 +63,7 @@ export const Header = ({ setIsMenuOpen, isMenuOpen }) => {
           <a href="#" className="icons-header">
             <IoMdHelpCircle className="img" />
           </a>
-          
+
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <Avatar
@@ -66,14 +72,30 @@ export const Header = ({ setIsMenuOpen, isMenuOpen }) => {
                 className="transition-transform"
                 src={UserIcon}
               />
-            </DropdownTrigger >
-            <DropdownMenu aria-label="Profile Actions" variant="light" color="default" className="p-1">
-              <DropdownItem key="profile" className="h-10 gap-2" textValue="Usuario" showDivider>
+            </DropdownTrigger>
+            <DropdownMenu
+              aria-label="Profile Actions"
+              variant="light"
+              color="default"
+              className="p-1"
+            >
+              <DropdownItem
+                key="profile"
+                className="h-10 gap-2"
+                textValue="Usuario"
+                showDivider
+              >
                 <p className="font-semibold text-black">Ingresaste como:</p>
-                <p className="font-semibold text-stone-600 pl-[5px]">zoey@example.com</p>
+                <p className="font-semibold text-stone-600 pl-[5px]">
+                  zoey@example.com
+                </p>
               </DropdownItem>
-              <DropdownItem key="logout" color="danger" textValue="Logout" 
-              className="text-red-700 hover:text-red-600" onClick={onLogout}
+              <DropdownItem
+                key="logout"
+                color="danger"
+                textValue="Logout"
+                className="text-red-700 hover:text-red-600"
+                onClick={onLogout}
               >
                 Log Out
               </DropdownItem>

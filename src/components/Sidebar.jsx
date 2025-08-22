@@ -25,7 +25,7 @@ export const Sidebar = ({ isMenuOpen }) => {
 
   return (
     <>
-      <div className={`sidebar ${!isMenuOpen ? "menu-toggle" : ""}`}>
+      <div className={`sidebar ${!isMenuOpen ? " menu-toggle flex" : ""}`}>
         <ul className="nav nav-pills">
           {
             sidebarOptions.map((option) => (
